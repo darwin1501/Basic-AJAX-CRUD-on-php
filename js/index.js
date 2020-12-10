@@ -47,18 +47,19 @@ read()
 
 const edit = (()=>{
 	const target = event.target || event.srcElement;
-	const id = target.id;
+	const id = target.value;
 
 	const request = new XMLHttpRequest();
 	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, true);
 
 	request.onload = function(){
-	//split the result into array
-	const resultArray = this.responseText.split(' ');
+	const resultArray = JSON.parse(this.responseText);
+
+	// console.log(resultArray.id);
 	//set id value for update button
-	const btnUpdate = document.getElementById('update').value = resultArray[0];
-	//set value for input box at modal
-	const firstname = document.getElementById('firstname-edit').value  = resultArray[1];
+	const btnUpdate = document.getElementById('update').value = resultArray.id;
+	// //set value for input box at modal
+	const firstname = document.getElementById('firstname-edit').value  = resultArray.firstname;
 
 	modal.style.display = "block";
 	//view result on modal
@@ -68,15 +69,29 @@ const edit = (()=>{
 
 const update = (()=>{
 	const target = event.target || event.srcElement;
-	const value = target.value;
+	const id = target.value;
 	const firstname = document.getElementById('firstname-edit').value;
 	
 	const request = new XMLHttpRequest();
 	// request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, );
-	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${value}&fname=${firstname}`, true);
+	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
 	request.onload = function(){
 	// console.log(this.responseText)
 	read();
+	}
+	request.send();
+})
+
+const deleteData = (()=>{
+	//get the ID
+	const target = event.target || event.srcElement;
+	const id = target.value;
+
+	const request = new XMLHttpRequest();
+	//pass the ID on php
+	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/delete.php?id=${id}`, true);
+	request.onload = function(){
+			read()
 	}
 	request.send();
 })
