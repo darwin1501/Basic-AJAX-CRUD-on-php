@@ -36,3 +36,7 @@
   text-decoration: none;
   cursor: pointer;
 } 
+
+.warning{
+  border: solid red 1px;
+}

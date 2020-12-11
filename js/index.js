@@ -1,34 +1,92 @@
 
 
-async function submit(){
-	create()
+ function submit(){
+	let firstName = document.getElementById('firstname').value;
+	const fnameInput = document.getElementById('firstname');
+	console.log(firstName)
+	if (firstName === "") {
+		fnameInput.classList.add('warning');
+		// console.log('warning');
+	}else{
+		fnameInput.classList.remove('warning');
+		create()
+	}
 }
-// Get the modal
-var modal = document.getElementById("myModal");
 
+// const inputs = document.getElementsByClassName('input');
+
+// for (let inputCount = 0; inputCount < inputs.length; inputCount++) {
+// 	// inputs[inputCount].addEventListener("in")
+// 	inputs[inputCount].addEventListener("input", function(){
+// 	// console.log('press');
+// 	// let firstName = document.getElementById('firstname').value;
+// 	// const fnameInput = document.getElementById('firstname');
+// 	// console.log(firstName)
+// 	if (inputs[inputCount].value === "") {
+// 		inputs[inputCount].classList.add('warning');
+// 		// console.log('warning');
+// 	}else{
+// 		inputs[inputCount].classList.remove('warning');
+// 		// create()
+// 	}
+// })
+// };
+
+//required input setting
+document.getElementById('firstname').addEventListener("input", function(){
+	// console.log('press');
+	let firstName = document.getElementById('firstname').value;
+	const fnameInput = document.getElementById('firstname');
+	console.log(firstName)
+	if (firstName === "") {
+		fnameInput.classList.add('warning');
+		// console.log('warning');
+	}else{
+		fnameInput.classList.remove('warning');
+		// create()
+	}
+})
+
+//modal setttings
+
+// Get the modal
+var editModal = document.getElementById("editModal");
+var addModal = document.getElementById("addModal");
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var editClose = document.getElementById("editClose");
+var addClose = document.getElementById("addClose");
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+editClose.onclick = function() {
+  editModal.style.display = "none";
+}
+addClose.onclick = function(){
+	addModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == editModal) {
+    editModal.style.display = "none";
   }
-} 
+  if (event.target == addModal) {
+    addModal.style.display = "none";
+  }
+}
 
+const addRecords = (()=>{
+	addModal.style.display = "block";
+})
+ 
 const create  = (()=>{
-	const firstName = document.getElementById('first-name').value;
+	let firstName = document.getElementById('firstname').value;
+	const fnameInput = document.getElementById('firstname');
 	const request = new XMLHttpRequest();
 
 	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/create.php?data=" + firstName, true);
 	request.onload = function(){
-
 	read()
+	document.getElementById('firstname').value = "";
 	}
 	request.send();
 })
@@ -38,8 +96,7 @@ const read = (()=>{
 	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/read.php");
 
 	request.onload = function(){
-	const result = document.getElementById('result').innerHTML  = this.responseText
-
+	const result = document.getElementById('result').innerHTML  = this.responseText;
 	}
 	request.send();
 })
@@ -60,9 +117,8 @@ const edit = (()=>{
 	const btnUpdate = document.getElementById('update').value = resultArray.id;
 	// //set value for input box at modal
 	const firstname = document.getElementById('firstname-edit').value  = resultArray.firstname;
-
-	modal.style.display = "block";
 	//view result on modal
+	editModal.style.display = "block";
 	}
 	request.send();
 })
@@ -83,6 +139,7 @@ const update = (()=>{
 })
 
 const deleteData = (()=>{
+	 
 	//get the ID
 	const target = event.target || event.srcElement;
 	const id = target.value;
@@ -93,9 +150,20 @@ const deleteData = (()=>{
 	request.onload = function(){
 			read()
 	}
-	request.send();
+	if(confirm('Delete?') === true){
+	 	// console.log('deleted')
+		request.send();
+	}
 })
 
-//add function that will create pop-up cards for adding records.
-
-//add function that will create pop-up cards for editing records.
+const searchName = (()=>{
+	const target = event.target || event.srcElement;
+	const value = target.value;
+	// console.log(typeof value)
+	const request = new XMLHttpRequest();
+	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/search.php?fname=${value}`, true);
+	request.onload = function(){
+		const result = document.getElementById('result').innerHTML  = this.responseText;
+	}
+	request.send();
+})
