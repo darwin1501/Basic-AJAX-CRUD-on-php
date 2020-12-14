@@ -7,9 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<!-- <input type="text" name="firstname" id="first-name">
-
-<button onclick="submit()">Submit</button> -->
 <button id="add-records" onclick="addRecords()">Add Records</button>
 <br>
 <br>
@@ -51,7 +48,6 @@
     <button id="update" onclick="submit()">Submit</button>
   </div>
 </div> 
-
 <script src="js/index.js"></script>
 </body>
 </html>

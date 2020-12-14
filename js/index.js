@@ -1,6 +1,6 @@
 
 
- function submit(){
+const submit = (()=>{
 	let firstName = document.getElementById('firstname').value;
 	const fnameInput = document.getElementById('firstname');
 	console.log(firstName)
@@ -11,26 +11,7 @@
 		fnameInput.classList.remove('warning');
 		create()
 	}
-}
-
-// const inputs = document.getElementsByClassName('input');
-
-// for (let inputCount = 0; inputCount < inputs.length; inputCount++) {
-// 	// inputs[inputCount].addEventListener("in")
-// 	inputs[inputCount].addEventListener("input", function(){
-// 	// console.log('press');
-// 	// let firstName = document.getElementById('firstname').value;
-// 	// const fnameInput = document.getElementById('firstname');
-// 	// console.log(firstName)
-// 	if (inputs[inputCount].value === "") {
-// 		inputs[inputCount].classList.add('warning');
-// 		// console.log('warning');
-// 	}else{
-// 		inputs[inputCount].classList.remove('warning');
-// 		// create()
-// 	}
-// })
-// };
+})
 
 //required input setting
 document.getElementById('firstname').addEventListener("input", function(){
@@ -108,11 +89,8 @@ const edit = (()=>{
 
 	const request = new XMLHttpRequest();
 	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, true);
-
 	request.onload = function(){
 	const resultArray = JSON.parse(this.responseText);
-
-	// console.log(resultArray.id);
 	//set id value for update button
 	const btnUpdate = document.getElementById('update').value = resultArray.id;
 	// //set value for input box at modal
@@ -129,21 +107,17 @@ const update = (()=>{
 	const firstname = document.getElementById('firstname-edit').value;
 	
 	const request = new XMLHttpRequest();
-	// request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, );
 	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
 	request.onload = function(){
-	// console.log(this.responseText)
 	read();
 	}
 	request.send();
 })
 
 const deleteData = (()=>{
-	 
 	//get the ID
 	const target = event.target || event.srcElement;
 	const id = target.value;
-
 	const request = new XMLHttpRequest();
 	//pass the ID on php
 	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/delete.php?id=${id}`, true);
@@ -159,7 +133,7 @@ const deleteData = (()=>{
 const searchName = (()=>{
 	const target = event.target || event.srcElement;
 	const value = target.value;
-	// console.log(typeof value)
+
 	const request = new XMLHttpRequest();
 	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/search.php?fname=${value}`, true);
 	request.onload = function(){

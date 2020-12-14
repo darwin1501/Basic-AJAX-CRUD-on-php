@@ -1,29 +1,34 @@
 <?php
-$serverName = '127.0.0.1';
 
-$username = 'admin';
+//procedural
 
-$password = 'admin';
+// $serverName = '127.0.0.1';
+// $username = 'admin';
+// $password = 'admin';
+// $databaseName = 'students_db';
 
-$databaseName = 'students_db';
+// $conn = new mysqli($serverName, $username, $password, $databaseName);
 
-$conn = new mysqli($serverName, $username, $password, $databaseName);
-
-if($conn->connect_error){
-	die("Connection Failed: " . $conn->error);
-}
-
-// echo "Connected Succesfully";
-
-
-// INSERT INTO `students` (`id`, `firstname`) VALUES (NULL, 'foo');
-
-// $sql = "INSERT INTO students (id, firstname) VALUES (NULL, 'foobar')";
-
-// if ($conn->query($sql) === TRUE) {
-//   echo "New record created successfully";
-// } else {
-//   echo "Error: " . $sql . "<br>" . $conn->error;
+// if($conn->connect_error){
+// 	die("Connection Failed: " . $conn->error);
 // }
 
-// $conn->close();`
+//OOP
+class Auth{
+	private $serverName = '127.0.0.1';
+	private $username = 'admin';
+	private $password = 'admin';
+	private $databaseName = 'students_db';
+	private $conn;
+
+	public function checkAuth(){
+		$conn = new mysqli($this->serverName, $this->username, $this->password, $this->databaseName);
+		if ($conn->connect_error) {
+			die("Connection Failed". $this->$conn->error);
+		}else{
+			return $conn;
+		}
+	}
+}
+$auth = new Auth();
+$conn = $auth->checkAuth();

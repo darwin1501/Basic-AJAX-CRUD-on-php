@@ -16,7 +16,6 @@ if ($result->num_rows > 0) {
 		//push objects with key into array
 		$resultArray['id'] = $row['id'];
 		$resultArray['firstname'] = $row['firstname'];
-		// array_push($resultArray, $row['id'], $row['firstname']);
 	}
 
 }else{
@@ -24,8 +23,3 @@ if ($result->num_rows > 0) {
 }
 //format array into JSON
 echo json_encode($resultArray, JSON_PRETTY_PRINT);
-
-// return json_encode($resultArray);
-
-
-// SELECT * FROM `students` WHERE `id` = 70 

@@ -6,7 +6,6 @@ include '../db/db.php';
 
 $firstname = $_REQUEST["data"];
 
-
 $sql = "INSERT INTO students (id, firstname) VALUES (NULL, '$firstname')";
 
 if ($conn->query($sql) === TRUE) {
