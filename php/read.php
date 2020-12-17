@@ -13,7 +13,7 @@ class Read{
 		$conn = $auth->checkAuth();
 		
 		// SELECT * FROM `students` 
-		$sql = "SELECT * FROM students";
+		$sql = "SELECT * FROM students ORDER BY `id` DESC";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {

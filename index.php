@@ -14,14 +14,15 @@
 <br>
 <br>
 <div id="table-container">
-	<table>
+	<table id="data-list">
 		<tr>
 			<th>ID</th>
 			<th>Firstname</th>
 			<th>Operations</th>
 		</tr>
-		<tbody id="result">
+		<tbody id="result" class="list">
 		</tbody>
+    <tr class="pagination"></tr>
 	</table>
 </div>
 
@@ -48,6 +49,10 @@
     <button id="update" onclick="submit()">Submit</button>
   </div>
 </div> 
+<script src="js/list.js"></script>
 <script src="js/index.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 const submit = (()=>{
 	let firstName = document.getElementById('firstname').value;
 	const fnameInput = document.getElementById('firstname');
-	console.log(firstName)
+	// console.log(firstName)
 	if (firstName === "") {
 		fnameInput.classList.add('warning');
 		// console.log('warning');
@@ -13,20 +13,20 @@ const submit = (()=>{
 	}
 })
 
-//required input setting
-document.getElementById('firstname').addEventListener("input", function(){
-	// console.log('press');
-	let firstName = document.getElementById('firstname').value;
-	const fnameInput = document.getElementById('firstname');
-	console.log(firstName)
-	if (firstName === "") {
-		fnameInput.classList.add('warning');
-		// console.log('warning');
-	}else{
-		fnameInput.classList.remove('warning');
-		// create()
-	}
-})
+// required input setting
+// document.getElementById('firstname').addEventListener("input", function(){
+// 	// console.log('press');
+// 	let firstName = document.getElementById('firstname').value;
+// 	const fnameInput = document.getElementById('firstname');
+// 	// console.log(firstName)
+// 	if (firstName === "") {
+// 		fnameInput.classList.add('warning');
+// 		// console.log('warning');
+// 	}else{
+// 		fnameInput.classList.remove('warning');
+// 		// create()
+// 	}
+// })
 
 //modal setttings
 
@@ -61,6 +61,11 @@ const addRecords = (()=>{
  
 const create  = (()=>{
 	let firstName = document.getElementById('firstname').value;
+	// console.log(typeof firstname)
+	// firstname = String(firstname);
+	// firstname = firstname.trim();
+	// console.log(String(firstname).replace(/\s+/g, ''))
+	// firstName = firstname.replace(/\s+/g, '');
 	const fnameInput = document.getElementById('firstname');
 	const request = new XMLHttpRequest();
 
@@ -68,6 +73,7 @@ const create  = (()=>{
 	request.onload = function(){
 	read()
 	document.getElementById('firstname').value = "";
+	// console.log(this.responseText)
 	}
 	request.send();
 })
@@ -78,6 +84,11 @@ const read = (()=>{
 
 	request.onload = function(){
 	const result = document.getElementById('result').innerHTML  = this.responseText;
+		var recordList = new List('data-list', {
+		  valueNames: ['name'],
+		  page: 3,
+		  pagination: true
+		});
 	}
 	request.send();
 })
@@ -105,13 +116,21 @@ const update = (()=>{
 	const target = event.target || event.srcElement;
 	const id = target.value;
 	const firstname = document.getElementById('firstname-edit').value;
+	const fnameOnEdit = document.getElementById('firstname-edit');
 	
 	const request = new XMLHttpRequest();
 	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
 	request.onload = function(){
 	read();
 	}
-	request.send();
+		// console.log(firstName)
+	if (firstname === "") {
+		fnameOnEdit.classList.add('warning');
+		// console.log('warning');
+	}else{
+		fnameOnEdit.classList.remove('warning');
+		request.send();
+	}
 })
 
 const deleteData = (()=>{
