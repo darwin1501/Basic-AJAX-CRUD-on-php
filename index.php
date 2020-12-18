@@ -43,7 +43,16 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" id="addClose">&times;</span>
-    <input type="text" class="input" name="firstname" id="firstname">
+    <input type="text" class="input" placeholder="firstname" name="firstname" id="firstname">
+    <br>
+    <br>
+    <input type="text" class="input" placeholder="middlename" name="middlename" id="middlename">
+    <br>
+    <br>
+    <input type="text" class="input" placeholder="lastname" name="lastname" id="lastname">
+    <br>
+    <br>
+    <input type="text" class="input" placeholder="email" name="email" id="email">
     <br>
     <br>
     <button id="update" onclick="submit()">Submit</button>

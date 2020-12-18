@@ -21,9 +21,12 @@ class Create{
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
 
-		$firstname = trim($_REQUEST["data"], '\n \t ""');
+		$firstname = trim($_REQUEST["firstname"], '\n \t ""');
+		$middlename = trim($_REQUEST["middlename"], '\n \t ""');
+		$lastname = trim($_REQUEST["lastname"], '\n \t ""');
+		$email = trim($_REQUEST["email"], '\n \t ""');
 
-		$sql = "INSERT INTO students (id, firstname) VALUES (NULL, '$firstname')";
+		$sql = "INSERT INTO students (id, firstname, middlename, lastname, email) VALUES (NULL, '$firstname', '$middlename', 'lastname', 'email')";
 
 		if ($conn->query($sql) === TRUE) {
   		echo "New record created successfully";

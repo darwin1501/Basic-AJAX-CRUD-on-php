@@ -13,6 +13,16 @@ const submit = (()=>{
 	}
 })
 
+const createPagination = (()=>{
+	 let recordList = new List('data-list', {
+		  valueNames: ['name'],
+		  page: 3,
+		  pagination: true
+		});
+
+	 return recordList;
+})
+
 // required input setting
 // document.getElementById('firstname').addEventListener("input", function(){
 // 	// console.log('press');
@@ -60,16 +70,19 @@ const addRecords = (()=>{
 })
  
 const create  = (()=>{
-	let firstName = document.getElementById('firstname').value;
+	const firstName = document.getElementById('firstname').value;
+	const middleName = document.getElementById('middlename').value;
+	const lastname = document.getElementById('lastname').value;
+	const email = document.getElementById('email').value;
 	// console.log(typeof firstname)
 	// firstname = String(firstname);
 	// firstname = firstname.trim();
 	// console.log(String(firstname).replace(/\s+/g, ''))
 	// firstName = firstname.replace(/\s+/g, '');
-	const fnameInput = document.getElementById('firstname');
-	const request = new XMLHttpRequest();
 
-	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/create.php?data=" + firstName, true);
+	const request = new XMLHttpRequest();
+	// request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
+	request.open("GET",`http://127.0.0.1:8080/ajax/crud/php/create.php?firstname=${firstName}&middlename=${middlename}&lastname=${lastname}&$email=${email}`, true);
 	request.onload = function(){
 	read()
 	document.getElementById('firstname').value = "";
@@ -84,11 +97,7 @@ const read = (()=>{
 
 	request.onload = function(){
 	const result = document.getElementById('result').innerHTML  = this.responseText;
-		var recordList = new List('data-list', {
-		  valueNames: ['name'],
-		  page: 3,
-		  pagination: true
-		});
+	createPagination();
 	}
 	request.send();
 })
@@ -157,6 +166,7 @@ const searchName = (()=>{
 	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/search.php?fname=${value}`, true);
 	request.onload = function(){
 		const result = document.getElementById('result').innerHTML  = this.responseText;
+		createPagination();
 	}
 	request.send();
 })
