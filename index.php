@@ -17,7 +17,7 @@
       <br>
       <br>
       <div class="search-container">
-        <input type="text" name="search-names" placeholder="search" class="search-txt" id="searchName" oninput="searchName()">
+        <input type="text" name="search-names" placeholder="search by firstname" class="search-txt" id="searchName" oninput="searchName()">
       </div>
       <div id="table-container" class="table-container">
         <table id="data-list">

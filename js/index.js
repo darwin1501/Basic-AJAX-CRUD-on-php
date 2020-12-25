@@ -1,7 +1,7 @@
 
 
 const submit = (()=>{
-	//check if there's a empty fields
+	//check if there's an empty string
 	const addTxt = document.getElementsByClassName('add-txt');
 	const value = [];
 	for(i of addTxt){
@@ -22,21 +22,6 @@ const createPagination = (()=>{
 
 	 return recordList;
 })
-
-// required input setting
-// document.getElementById('firstname').addEventListener("input", function(){
-// 	// console.log('press');
-// 	let firstName = document.getElementById('firstname').value;
-// 	const fnameInput = document.getElementById('firstname');
-// 	// console.log(firstName)
-// 	if (firstName === "") {
-// 		fnameInput.classList.add('warning');
-// 		// console.log('warning');
-// 	}else{
-// 		fnameInput.classList.remove('warning');
-// 		// create()
-// 	}
-// })
 
 //modal setttings
 
@@ -147,7 +132,7 @@ const update = (()=>{
 	read();
 	alert('succesfully updated');
 	}
-	//check if there's a empty fields
+	//check if there's an empty string
 	const editTxt = document.getElementsByClassName('edit-txt');
 	const value = [];
 	for(i of editTxt){

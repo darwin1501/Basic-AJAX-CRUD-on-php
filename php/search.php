@@ -51,12 +51,23 @@ class Search{
 				?>
 			</td>
 			<td data-th="Options">
-				<button class="btn-edit" onclick="edit()" value = <?php echo $row['id'];?>>
+				<!-- <button class="btn-edit" onclick="edit()" value = <?php echo $row['id'];?>>
 				edit
 				</button>
 				<button class="btn-delete" onclick="deleteData()" value = <?php echo $row['id'];?>>
 				delete
-				</button>
+				</button> -->
+				<div class="dropdown">
+  					<div class="dropbtn"></div>
+					<div class="dropdown-content">
+						<button class="btn-edit" onclick="edit()" value = <?php echo $row['id'];?>>
+							edit
+						</button>
+						<button class="btn-delete" onclick="deleteData()" value = <?php echo $row['id'];?>>
+							delete
+						</button>
+					</div>
+				</div>
 			</td>
 		</tr> 
 		<?php

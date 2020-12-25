@@ -20,10 +20,10 @@ class Update{
 		$conn = $auth->checkAuth();
 		
 		$id = $_REQUEST["id"];
-		$firstname = trim($_REQUEST["firstname"], '\n \t ""');
-		$middlename = trim($_REQUEST["middlename"], '\n \t ""');
-		$lastname = trim($_REQUEST["lastname"], '\n \t ""');
-		$email = trim($_REQUEST["email"], '\n \t ""');
+		$firstname = trim($_REQUEST["firstname"]);
+		$middlename = trim($_REQUEST["middlename"]);
+		$lastname = trim($_REQUEST["lastname"]);
+		$email = trim($_REQUEST["email"]);
 
 		$sql = "UPDATE students SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', email = '$email' WHERE `id` = '$id'";
 		$result = $conn->query($sql);

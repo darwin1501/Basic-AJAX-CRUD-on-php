@@ -22,10 +22,10 @@ class Create{
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
 
-		$firstname = trim($_REQUEST["firstname"], '\n \t ""');
-		$middlename = trim($_REQUEST["middlename"], '\n \t ""');
-		$lastname = trim($_REQUEST["lastname"], '\n \t ""');
-		$email = trim($_REQUEST["email"], '\n \t ""');
+		$firstname = trim($_REQUEST["firstname"]);
+		$middlename = trim($_REQUEST["middlename"]);
+		$lastname = trim($_REQUEST["lastname"]);
+		$email = trim($_REQUEST["email"]);
 
 		$sql = "INSERT INTO students (id, firstname, middlename, lastname, email) VALUES (NULL, '$firstname', '$middlename', '$lastname', '$email')";
 
