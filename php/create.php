@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://127.0.0.1:8080/ajax/crud/php/create.php');
+header('Access-Control-Allow-Origin: http://localhost:8080/ajax/crud/php/create.php');
 
 include '../db/db.php';
 //old code

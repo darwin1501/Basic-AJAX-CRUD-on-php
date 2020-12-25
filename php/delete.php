@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: http://127.0.0.1:8080/ajax/crud/php/delete.php');
+header('Access-Control-Allow-Origin: http://localhost:8080/ajax/crud/php/delete.php');
 
 include '../db/db.php';
 //old code

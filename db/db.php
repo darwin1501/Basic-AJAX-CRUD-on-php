@@ -15,7 +15,8 @@
 
 //OOP
 class Auth{
-	private $serverName = '127.0.0.1';
+	// private $serverName = '127.0.0.1';
+	private $serverName = 'localhost';
 	private $username = 'admin';
 	private $password = 'admin';
 	private $databaseName = 'students_db';

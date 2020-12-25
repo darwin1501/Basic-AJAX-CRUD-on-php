@@ -62,7 +62,7 @@ const create  = (()=>{
 	// console.log(email);
 	const request = new XMLHttpRequest();
 	// request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
-	request.open("GET",`http://127.0.0.1:8080/ajax/crud/php/create.php?
+	request.open("GET",`http://localhost:8080/ajax/crud/php/create.php?
 					firstname=${firstname}
 					&middlename=${middlename}&lastname=${lastname}
 					&email=${email}`, true);
@@ -81,7 +81,7 @@ const create  = (()=>{
 
 const read = (()=>{
 	const request = new XMLHttpRequest();
-	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/read.php");
+	request.open("GET","http://localhost:8080/ajax/crud/php/read.php");
 
 	request.onload = function(){
 	const result = document.getElementById('result').innerHTML  = this.responseText;
@@ -96,7 +96,7 @@ const edit = (()=>{
 	const id = target.value;
 
 	const request = new XMLHttpRequest();
-	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, true);
+	request.open("GET","http://localhost:8080/ajax/crud/php/edit.php?id=" + id, true);
 	request.onload = function(){
 	//convert to JSON
 	const resultArray = JSON.parse(this.responseText);
@@ -124,7 +124,7 @@ const update = (()=>{
 	const fnameOnEdit = document.getElementById('firstname-edit');
 	
 	const request = new XMLHttpRequest();
-	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?
+	request.open("GET", `http://localhost:8080/ajax/crud/php/update.php?
 						id=${id}&firstname=${firstname}
 						&middlename=${middlename}&lastname=${lastname}
 						&email=${email}`, true);
@@ -151,7 +151,7 @@ const deleteData = (()=>{
 	const id = target.value;
 	const request = new XMLHttpRequest();
 	//pass the ID on php
-	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/delete.php?id=${id}`, true);
+	request.open("GET", `http://localhost:8080/ajax/crud/php/delete.php?id=${id}`, true);
 	request.onload = function(){
 			read()
 	}
@@ -167,7 +167,7 @@ const searchName = (()=>{
 	const value = target.value;
 
 	const request = new XMLHttpRequest();
-	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/search.php?fname=${value}`, true);
+	request.open("GET", `http://localhost:8080/ajax/crud/php/search.php?fname=${value}`, true);
 	request.onload = function(){
 		const result = document.getElementById('result').innerHTML  = this.responseText;
 		createPagination();
