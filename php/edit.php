@@ -28,8 +28,10 @@ include '../db/db.php';
 //OOP
 class Edit{
 	public function editRecords(){
+		//database connection
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
+
 		$id = $_REQUEST["id"];
 		$resultArray = [];
 
@@ -41,6 +43,9 @@ class Edit{
 			//push objects with key into array
 			$resultArray['id'] = $row['id'];
 			$resultArray['firstname'] = $row['firstname'];
+			$resultArray['middlename'] = $row['middlename'];
+			$resultArray['lastname'] = $row['lastname'];
+			$resultArray['email'] = $row['email'];
 			}
 		}else{
 			// echo "no results";

@@ -1,18 +1,18 @@
 
 
 const submit = (()=>{
-	let firstName = document.getElementById('firstname').value;
-	const fnameInput = document.getElementById('firstname');
-	// console.log(firstName)
-	if (firstName === "") {
-		fnameInput.classList.add('warning');
-		// console.log('warning');
+	//check if there's a empty fields
+	const addTxt = document.getElementsByClassName('add-txt');
+	const value = [];
+	for(i of addTxt){
+		value.push(i.value)
+	}
+	if(value.includes("")){
+		alert('dont leave empty fields');
 	}else{
-		fnameInput.classList.remove('warning');
-		create()
+		create();
 	}
 })
-
 const createPagination = (()=>{
 	 let recordList = new List('data-list', {
 		  valueNames: ['name'],
@@ -70,23 +70,26 @@ const addRecords = (()=>{
 })
  
 const create  = (()=>{
-	const firstName = document.getElementById('firstname').value;
-	const middleName = document.getElementById('middlename').value;
+	const firstname = document.getElementById('firstname').value;
+	const middlename = document.getElementById('middlename').value;
 	const lastname = document.getElementById('lastname').value;
 	const email = document.getElementById('email').value;
-	// console.log(typeof firstname)
-	// firstname = String(firstname);
-	// firstname = firstname.trim();
-	// console.log(String(firstname).replace(/\s+/g, ''))
-	// firstName = firstname.replace(/\s+/g, '');
-
+	// console.log(email);
 	const request = new XMLHttpRequest();
 	// request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
-	request.open("GET",`http://127.0.0.1:8080/ajax/crud/php/create.php?firstname=${firstName}&middlename=${middlename}&lastname=${lastname}&$email=${email}`, true);
+	request.open("GET",`http://127.0.0.1:8080/ajax/crud/php/create.php?
+					firstname=${firstname}
+					&middlename=${middlename}&lastname=${lastname}
+					&email=${email}`, true);
 	request.onload = function(){
 	read()
+	//clear inputs after submit
 	document.getElementById('firstname').value = "";
+	document.getElementById('middlename').value = "";
+	document.getElementById('lastname').value = "";
+	document.getElementById('email').value = "";
 	// console.log(this.responseText)
+	alert('succesfully added');
 	}
 	request.send();
 })
@@ -110,13 +113,18 @@ const edit = (()=>{
 	const request = new XMLHttpRequest();
 	request.open("GET","http://127.0.0.1:8080/ajax/crud/php/edit.php?id=" + id, true);
 	request.onload = function(){
+	//convert to JSON
 	const resultArray = JSON.parse(this.responseText);
 	//set id value for update button
 	const btnUpdate = document.getElementById('update').value = resultArray.id;
 	// //set value for input box at modal
 	const firstname = document.getElementById('firstname-edit').value  = resultArray.firstname;
+	const middlename = document.getElementById('middlename-edit').value  = resultArray.middlename;
+	const lastname = document.getElementById('lastname-edit').value  = resultArray.lastname;
+	const email = document.getElementById('email-edit').value  = resultArray.email;
 	//view result on modal
 	editModal.style.display = "block";
+	// console.log(resultArray);
 	}
 	request.send();
 })
@@ -125,19 +133,29 @@ const update = (()=>{
 	const target = event.target || event.srcElement;
 	const id = target.value;
 	const firstname = document.getElementById('firstname-edit').value;
+	const middlename = document.getElementById('middlename-edit').value;
+	const lastname = document.getElementById('lastname-edit').value;
+	const email = document.getElementById('email-edit').value;
 	const fnameOnEdit = document.getElementById('firstname-edit');
 	
 	const request = new XMLHttpRequest();
-	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
+	request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?
+						id=${id}&firstname=${firstname}
+						&middlename=${middlename}&lastname=${lastname}
+						&email=${email}`, true);
 	request.onload = function(){
 	read();
+	alert('succesfully updated');
 	}
-		// console.log(firstName)
-	if (firstname === "") {
-		fnameOnEdit.classList.add('warning');
-		// console.log('warning');
+	//check if there's a empty fields
+	const editTxt = document.getElementsByClassName('edit-txt');
+	const value = [];
+	for(i of editTxt){
+		value.push(i.value)
+	}
+	if(value.includes("")){
+		alert('dont leave empty fields');
 	}else{
-		fnameOnEdit.classList.remove('warning');
 		request.send();
 	}
 })
@@ -155,6 +173,7 @@ const deleteData = (()=>{
 	if(confirm('Delete?') === true){
 	 	// console.log('deleted')
 		request.send();
+	alert('deleted');
 	}
 })
 

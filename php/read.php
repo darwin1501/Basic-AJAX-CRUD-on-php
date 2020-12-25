@@ -23,26 +23,44 @@ class Read{
 		?>
 		<?php?>
 		<tr>
-			<td>
+			<td data-th="ID">
 				<?php 
 					echo $row['id'];
 				?>
 			</td>
-			<td>
+			<td data-th="Firstname">
 				<?php 
 					echo $row['firstname'];
 				?>
 			</td>
-			<td>
+			<td data-th="Middlename">
+				<?php 
+					echo $row['middlename'];
+				?>
+			</td>
+			<td data-th="Lastname">
+				<?php 
+					echo $row['lastname'];
+				?>
+			</td>
+			<td data-th="Email">
+				<?php 
+					echo $row['email'];
+				?>
+			</td>
+			<td data-th="Options">
 				<button class="btn-edit" onclick="edit()" value = <?php echo $row['id'];?>>
 				edit
 				</button>
-			</td>
-			<td>
 				<button class="btn-delete" onclick="deleteData()" value = <?php echo $row['id'];?>>
 				delete
 				</button>
 			</td>
+			<!-- <td>
+				<button class="btn-delete" onclick="deleteData()" value = <?php echo $row['id'];?>>
+				delete
+				</button>
+			</td> -->
 		</tr>
 		<?php
 		  }

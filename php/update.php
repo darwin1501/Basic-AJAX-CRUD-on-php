@@ -15,12 +15,17 @@ include '../db/db.php';
 //OOP
 class Update{
 	public function updateRecord(){
+		//database connection
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
+		
 		$id = $_REQUEST["id"];
-		$firstname = trim($_REQUEST["fname"], '\n \t ""');
+		$firstname = trim($_REQUEST["firstname"], '\n \t ""');
+		$middlename = trim($_REQUEST["middlename"], '\n \t ""');
+		$lastname = trim($_REQUEST["lastname"], '\n \t ""');
+		$email = trim($_REQUEST["email"], '\n \t ""');
 
-		$sql = "UPDATE students SET firstname = '$firstname' WHERE `id` = '$id'";
+		$sql = "UPDATE students SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', email = '$email' WHERE `id` = '$id'";
 		$result = $conn->query($sql);
 
 		$conn->close();

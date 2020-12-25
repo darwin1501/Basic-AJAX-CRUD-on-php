@@ -18,6 +18,7 @@ include '../db/db.php';
 //OOP
 class Create{
 	public function createRecords(){
+		//database connection
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
 
@@ -26,10 +27,11 @@ class Create{
 		$lastname = trim($_REQUEST["lastname"], '\n \t ""');
 		$email = trim($_REQUEST["email"], '\n \t ""');
 
-		$sql = "INSERT INTO students (id, firstname, middlename, lastname, email) VALUES (NULL, '$firstname', '$middlename', 'lastname', 'email')";
+		$sql = "INSERT INTO students (id, firstname, middlename, lastname, email) VALUES (NULL, '$firstname', '$middlename', '$lastname', '$email')";
 
 		if ($conn->query($sql) === TRUE) {
   		echo "New record created successfully";
+  		echo $email;
 		} else {
   		echo "Error: " . $sql . "<br>" . $conn->error;
 		}

@@ -11,6 +11,7 @@ include '../db/db.php';
 
 class Delete{
 	public function deleteRecord(){
+		//database connection
 		$auth = new Auth();
 		$conn = $auth->checkAuth();
 

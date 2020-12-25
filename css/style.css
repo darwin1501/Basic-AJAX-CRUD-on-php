@@ -1,4 +1,62 @@
- /* The Modal (background) */
+/*global style*/
+.active{
+  background-color: rgb(67, 138, 230) !important;
+}
+.active > a{
+  color: white !important;
+}
+.add-btn{
+  padding: 15px;
+  border: none;
+  border-radius: 360px;
+  background-color: #4B8DF9;
+  color: white;
+  cursor: pointer;
+}
+.card{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 10px;
+}
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input{
+  background-color: rgb(246, 244, 244);
+  border: none;
+  border-top: solid rgb(211, 207, 207) 1px !important;
+  border-radius: 360px;
+  text-align: center;
+  padding: 5px;
+  width: 97%;
+  margin: auto;
+}
+.search-txt{
+  border-radius: 360px;
+  border: none;
+  background-color: rgb(246, 244, 244);
+  padding: 10px;
+  text-align: center;
+}
+.submit-btn, .update-btn{
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  background-color: #4B8DF9;
+  color: white;
+  cursor: pointer;
+  width: 100%
+}
+.btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+
+/* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -13,21 +71,28 @@
 }
 
 /* Modal Content/Box */
+.main-content{
+  margin-top: 10%;
+  width: 100%;
+}
 .modal-content {
   background-color: #fefefe;
   margin: 10% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
-  height: 50%;
+  border-radius: 10px;
 }
-
+li{
+  display: inline-block;
+}
 /* The Close Button */
 .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin-top: -15%;
+  margin-right: -10%;
 }
 
 .close:hover,
@@ -40,23 +105,35 @@
 .warning{
   border: solid red 1px;
 }
-
 /*Pagination*/
     .pagination li {
-     /* display:inline-block;*/
+     /* display:inline-block; */
       padding:5px;
     }
-    .pagination{
-      top: 280px;
-      left: 200px;
-      position: absolute;
-    }
-    li{
-      display: inline-block;
-    }
     .pagination > li{
-      background-color: orange;
-      padding: 10px;
-      margin: 0 5px 0 5px;
+      /* background-color: white !important; */
+      border: solid #888 1px;
+      border-radius: 5px;
+      padding: 8px;
+      margin: 5px 5px 0 5px;
+    }
+    .pagination{
+      background-color: white !important;
+    }
+    a{
       text-decoration: none !important;
+      /* padding: 5px; */
+    }
+    a.page{
+      padding: 20px 10px 20px 10px;
+      /* margin: 20px; */
+    }
+    /* Table */
+  .table-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+    tr:nth-child(odd) {
+      background-color: #edebeb;
     }
