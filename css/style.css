@@ -1,3 +1,18 @@
+/*fonts */
+@font-face {
+font-family: 'Gilroy-Bold';
+font-style: normal;
+font-weight: normal;
+src: local('Gilroy-Bold'), url('../font/Gilroy-Bold.woff') format('woff');
+}
+
+@font-face {
+font-family: 'Gilroy-Regular';
+font-style: normal;
+font-weight: normal;
+src: local('Gilroy-Regular'), url('../font/Gilroy-Regular.woff') format('woff');
+}
+
 /*global style*/
 .active{
   background-color: rgb(67, 138, 230) !important;
@@ -53,6 +68,9 @@
   align-items: center;
   justify-content: center;
   margin-top: 5%;
+}
+html, body{
+  font-family: 'Gilroy-Regular';
 }
 
 /* Dropdown*/
