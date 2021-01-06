@@ -14,8 +14,26 @@
 // }
 
 //OOP
+// class Auth{
+// 	// private $serverName = '127.0.0.1';
+// 	private $serverName = 'localhost';
+// 	private $username = 'admin';
+// 	private $password = 'admin';
+// 	private $databaseName = 'students_db';
+// 	private $conn;
+
+// 	public function checkAuth(){
+// 		$conn = new mysqli($this->serverName, $this->username, $this->password, $this->databaseName);
+// 		if ($conn->connect_error) {
+// 			die("Connection Failed". $this->$conn->error);
+// 		}else{
+// 			return $conn;
+// 		}
+// 	}
+// }
+
+//OOP PDO
 class Auth{
-	// private $serverName = '127.0.0.1';
 	private $serverName = 'localhost';
 	private $username = 'admin';
 	private $password = 'admin';
@@ -23,13 +41,12 @@ class Auth{
 	private $conn;
 
 	public function checkAuth(){
-		$conn = new mysqli($this->serverName, $this->username, $this->password, $this->databaseName);
-		if ($conn->connect_error) {
-			die("Connection Failed". $this->$conn->error);
-		}else{
+		try {
+			$conn = new PDO("mysql:host={$this->serverName};dbname={$this->databaseName}", $this->username, $this->password);
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $conn;
+		} catch (PDOException $e) {
+			echo $e->getMessage();
 		}
 	}
 }
-$auth = new Auth();
-$conn = $auth->checkAuth();

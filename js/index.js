@@ -62,30 +62,31 @@ const create  = (()=>{
 	// console.log(email);
 	const request = new XMLHttpRequest();
 	// request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
-	request.open("GET",`http://localhost:8080/ajax/crud/php/create.php?
-					firstname=${firstname}
+	request.open("GET",`http://localhost:8080/pdo/crud/php/command.php?command=create
+					&firstname=${firstname}
 					&middlename=${middlename}&lastname=${lastname}
 					&email=${email}`, true);
 	request.onload = function(){
-	read()
-	//clear inputs after submit
-	document.getElementById('firstname').value = "";
-	document.getElementById('middlename').value = "";
-	document.getElementById('lastname').value = "";
-	document.getElementById('email').value = "";
-	// console.log(this.responseText)
-	alert('succesfully added');
+		read()
+		//clear inputs after submit
+		document.getElementById('firstname').value = "";
+		document.getElementById('middlename').value = "";
+		document.getElementById('lastname').value = "";
+		document.getElementById('email').value = "";
+		// console.log(this.responseText)
+		alert('succesfully added');
 	}
 	request.send();
 })
 
 const read = (()=>{
 	const request = new XMLHttpRequest();
-	request.open("GET","http://localhost:8080/ajax/crud/php/read.php");
+	request.open("GET","http://localhost:8080/pdo/crud/php/command.php?command=read", true);
 
 	request.onload = function(){
 	const result = document.getElementById('result').innerHTML  = this.responseText;
 	createPagination();
+	// console.log(this.responseText);
 	}
 	request.send();
 })
@@ -96,7 +97,7 @@ const edit = (()=>{
 	const id = target.value;
 
 	const request = new XMLHttpRequest();
-	request.open("GET","http://localhost:8080/ajax/crud/php/edit.php?id=" + id, true);
+	request.open("GET","http://localhost:8080/pdo/crud/php/command.php?command=edit&id=" + id, true);
 	request.onload = function(){
 	//convert to JSON
 	const resultArray = JSON.parse(this.responseText);
@@ -124,13 +125,14 @@ const update = (()=>{
 	const fnameOnEdit = document.getElementById('firstname-edit');
 	
 	const request = new XMLHttpRequest();
-	request.open("GET", `http://localhost:8080/ajax/crud/php/update.php?
-						id=${id}&firstname=${firstname}
+	request.open("GET", `http://localhost:8080/pdo/crud/php/command.php?
+						command=update&id=${id}&firstname=${firstname}
 						&middlename=${middlename}&lastname=${lastname}
 						&email=${email}`, true);
 	request.onload = function(){
 	read();
 	alert('succesfully updated');
+	// console.log(this.responseText);
 	}
 	//check if there's an empty string
 	const editTxt = document.getElementsByClassName('edit-txt');
@@ -151,9 +153,9 @@ const deleteData = (()=>{
 	const id = target.value;
 	const request = new XMLHttpRequest();
 	//pass the ID on php
-	request.open("GET", `http://localhost:8080/ajax/crud/php/delete.php?id=${id}`, true);
+	request.open("GET", `http://localhost:8080/pdo/crud/php/command.php?command=delete&id=${id}`, true);
 	request.onload = function(){
-			read()
+		read()
 	}
 	if(confirm('Delete?') === true){
 	 	// console.log('deleted')
@@ -167,7 +169,7 @@ const searchName = (()=>{
 	const value = target.value;
 
 	const request = new XMLHttpRequest();
-	request.open("GET", `http://localhost:8080/ajax/crud/php/search.php?fname=${value}`, true);
+	request.open("GET", `http://localhost:8080/pdo/crud/php/command.php?command=search&fname=${value}`, true);
 	request.onload = function(){
 		const result = document.getElementById('result').innerHTML  = this.responseText;
 		createPagination();
