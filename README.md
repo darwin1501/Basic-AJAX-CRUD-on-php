@@ -15,7 +15,7 @@ A simle create, read, update, delete, program built in php, JavaScript, HTML, CS
 
 ### Executing program
 
-* type this to the browser url http://localhost:8080/ajax/crud
+* type this to the browser url http://localhost:8080/pdo/crud
 
 
 
