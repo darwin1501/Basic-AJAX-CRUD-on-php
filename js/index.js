@@ -23,9 +23,8 @@ const createPagination = (()=>{
 	 return recordList;
 })
 
-//modal setttings
+//modal config
 
-// Get the modal
 var editModal = document.getElementById("editModal");
 var addModal = document.getElementById("addModal");
 // Get the <span> element that closes the modal
@@ -59,7 +58,7 @@ const create  = (()=>{
 	const middlename = document.getElementById('middlename').value;
 	const lastname = document.getElementById('lastname').value;
 	const email = document.getElementById('email').value;
-	// console.log(email);
+
 	const request = new XMLHttpRequest();
 	// request.open("GET", `http://127.0.0.1:8080/ajax/crud/php/update.php?id=${id}&fname=${firstname}`, true);
 	request.open("GET",`http://localhost:8080/pdo/crud/php/command.php?command=create
@@ -67,14 +66,19 @@ const create  = (()=>{
 					&middlename=${middlename}&lastname=${lastname}
 					&email=${email}`, true);
 	request.onload = function(){
+		//response from email validation at create function on operations.php
+		if(this.responseText == 'false'){
+			alert('email is not valid');
+		}else{
 		read()
-		//clear inputs after submit
-		document.getElementById('firstname').value = "";
-		document.getElementById('middlename').value = "";
-		document.getElementById('lastname').value = "";
-		document.getElementById('email').value = "";
-		// console.log(this.responseText)
-		alert('succesfully added');
+			//clear inputs after submit
+			document.getElementById('firstname').value = "";
+			document.getElementById('middlename').value = "";
+			document.getElementById('lastname').value = "";
+			document.getElementById('email').value = "";
+
+			alert('succesfully added');
+		}
 	}
 	request.send();
 })
@@ -86,7 +90,6 @@ const read = (()=>{
 	request.onload = function(){
 	const result = document.getElementById('result').innerHTML  = this.responseText;
 	createPagination();
-	// console.log(this.responseText);
 	}
 	request.send();
 })
@@ -110,7 +113,6 @@ const edit = (()=>{
 	const email = document.getElementById('email-edit').value  = resultArray.email;
 	//view result on modal
 	editModal.style.display = "block";
-	// console.log(resultArray);
 	}
 	request.send();
 })
@@ -132,7 +134,6 @@ const update = (()=>{
 	request.onload = function(){
 	read();
 	alert('succesfully updated');
-	// console.log(this.responseText);
 	}
 	//check if there's an empty string
 	const editTxt = document.getElementsByClassName('edit-txt');
@@ -158,7 +159,6 @@ const deleteData = (()=>{
 		read()
 	}
 	if(confirm('Delete?') === true){
-	 	// console.log('deleted')
 		request.send();
 	alert('deleted');
 	}
