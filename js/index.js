@@ -132,8 +132,13 @@ const update = (()=>{
 						&middlename=${middlename}&lastname=${lastname}
 						&email=${email}`, true);
 	request.onload = function(){
-	read();
-	alert('succesfully updated');
+	//response from email validation at create function on operations.php
+		if(this.responseText == 'false'){
+			alert('email is not valid');
+		}else{
+			read();
+		alert('succesfully updated');
+		}
 	}
 	//check if there's an empty string
 	const editTxt = document.getElementsByClassName('edit-txt');

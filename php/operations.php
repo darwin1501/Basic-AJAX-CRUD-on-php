@@ -1,7 +1,5 @@
 <?php
 
-include '../db/db.php';
-
 class Operations{
     public function create(){
         //database connection
@@ -137,10 +135,13 @@ class Operations{
 		$conn = $auth->checkAuth();
 		
 		$id = $_REQUEST["id"];
-		$firstname = trim($_REQUEST["firstname"]);
-		$middlename = trim($_REQUEST["middlename"]);
-		$lastname = trim($_REQUEST["lastname"]);
-		$email = trim($_REQUEST["email"]);
+
+		//sanitize input using html entities, and trim empty string
+		$firstname = htmlentities(trim($_REQUEST["firstname"]), ENT_QUOTES, 'UTF-8');
+		$middlename = htmlentities(trim($_REQUEST["middlename"]), ENT_QUOTES, 'UTF-8');
+		$lastname = htmlentities(trim($_REQUEST["lastname"]), ENT_QUOTES, 'UTF-8');
+		//sanitize email, and removes all unecessary characters
+		$email = htmlentities(trim($_REQUEST["email"]), ENT_QUOTES, 'UTF-8');
 
 		$sql= $conn->prepare("UPDATE students SET firstname=:firstname, middlename=:middlename, lastname=:lastname, email=:email WHERE id={$id}");
 		
@@ -149,10 +150,16 @@ class Operations{
 		$sql->bindParam(':lastname', $lastname);
 		$sql->bindParam(':email', $email);
 
-		$sql->execute();
-		//close connection
-		$conn = NULL;
-		$sql = NULL;
+		//check if email was valid
+		$validateEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+		if($validateEmail === false){
+			echo 'false';
+		}else{
+			$sql->execute();
+			//close connection
+			$conn = NULL;
+			$sql = NULL;
+		}
     }
     public function delete(){
         //database connection
