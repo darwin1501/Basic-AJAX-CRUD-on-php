@@ -1,4 +1,4 @@
-# CRUD AJAX OPP php
+# CRUD AJAX OOP php
 
 ## Description
 A simle create, read, update, delete, program built in php, JavaScript, HTML, CSS
